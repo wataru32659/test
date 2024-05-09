@@ -1,11 +1,11 @@
-** 開発環境 **
+ **開発環境**
 - Docker
-** Dockerイメージ **
+**Dockerイメージ**
 - laravel
 - php
 - mysql
 
-** 開発環境構築手順 **
+**開発環境構築手順**
 - Dockerをインストール
 - gitcloneでリモートリポジトリをcloneする
 - dockerにdbフォルダを作成
