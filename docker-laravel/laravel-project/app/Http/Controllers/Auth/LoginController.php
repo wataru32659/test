@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -22,19 +24,48 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * ログイン後のリダイレクト先
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/engineers';
 
     /**
-     * Create a new controller instance.
+     * 新しいログインコントローラのインスタンスを生成します。
      *
      * @return void
      */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * ログインフォームを表示します。
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Authファサードを使用してログアウトする
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+    
+        return redirect('/');
+    }
+
+    /**
+     * 認証に使用するガードを取得します。
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }
