@@ -1,15 +1,19 @@
  **開発環境**
 - Docker
 
+**Dockerコンテナ**
+- app
+- db
+- nginx
 **Dockerイメージ**
-- laravel
 - php
 - mysql
+- nginx
 
 **開発環境構築手順**
 - Dockerをインストール
 - git cloneでリモートリポジトリをcloneする
-- dockerにdbフォルダを作成
+- dockerにdbフォルダを作成(mkdir .\docker-laravel\docker\db)
 - wsl環境(ubuntu)を開く
 - docker compose up -dでコンテナを作成・起動
 - cd docker-laravelに移動
