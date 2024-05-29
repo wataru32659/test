@@ -30,8 +30,8 @@
 - use 〇〇※データベース一覧を表示してくれます。
 
 **Dockerコマンド一覧**
-- docker ps ※現在のコンテナ稼働状況確認
-- docker ps -a　※現在のコンテナ稼働状況確認(停止しているコンテナも含む)
+- docker ps※現在のコンテナ稼働状況確認
+- docker ps -a※現在のコンテナ稼働状況確認(停止しているコンテナも含む)
 - docker stop <CONTAINER IDまたはNAME>※コンテナ停止
 - docker start $(docker ps -aq)※すべてのコンテナ開始
 - docker stop $(docker ps -q)※すべてのコンテナ停止
