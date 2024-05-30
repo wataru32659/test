@@ -1,15 +1,11 @@
 <!-- resources/views/engineer/create.blade.php -->
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>エンジニア登録フォーム</title>
-</head>
+@section('content')
+<div class="container">
+    <h1 class="text-center">エンジニア詳細画面</h1>
+</div>
 <body>
-    <h1>エンジニア登録フォーム</h1>
-
     @if ($errors->any())
         <div>
             <ul>
@@ -20,15 +16,14 @@
         </div>
     @endif
 
+<div class="row justify-content-center">
     <form action="{{ route('engineer.store') }}" method="POST">
         @csrf
         <label for="name">名前:</label>
-        <input type="text" id="name" name="name" value="{{ old('name') }}"><br><br>
-
+        <input type="text" id="name" name="name" value="{{ old('name') }}"><br>
         <label for="age">年齢:</label>
-        <input type="number" id="age" name="age" value="{{ old('age') }}"><br><br>
-
+        <input type="number" id="age" name="age" value="{{ old('age') }}"><br>
         <button type="submit">登録する</button>
     </form>
-</body>
-</html>
+</div>
+@endsection

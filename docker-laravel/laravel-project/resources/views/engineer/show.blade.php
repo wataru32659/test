@@ -14,10 +14,6 @@
 @section('content')
 <table>
     <tr>
-        <th>No:</th>
-        <td>{{$engineer->id}}</td>
-    </tr>
-    <tr>
         <th>名前:</th>
         <td>{{$engineer->name}}</td>
     </tr>
@@ -29,7 +25,7 @@
 
 <!-- PDFファイルを表示 -->
 @if ($engineer->file)
-<embed src="{{ asset('storage/skillsheet/' . $engineer->id . '/' . basename($engineer->file->path)) }}" type="application/pdf" width="100%" height="600px"></embed>
+<embed src="{{ asset('storage/skillsheet/' . $engineer->id . $engineer->name . '/' . basename($engineer->file->path)) }}" type="application/pdf" width="100%" height="600px"></embed>
 @endif
 
 @endsection

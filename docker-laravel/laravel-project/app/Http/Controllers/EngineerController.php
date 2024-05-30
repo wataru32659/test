@@ -36,11 +36,11 @@ class EngineerController extends Controller
     
         // 年齢の検索条件を追加
         if ($maxAge !== null) {
-            $query->where('age', '<=', $maxAge);
+            $query->where('age', '>=', $maxAge);
         }
     
         if ($minAge !== null) {
-            $query->where('age', '>=', $minAge);
+            $query->where('age', '<=', $minAge);
         }
     
         // 検索を実行して結果を取得
@@ -71,7 +71,7 @@ class EngineerController extends Controller
         // ファイルがアップロードされている場合の処理
         if ($request->hasFile('file')) {
             // エンジニアごとのフォルダを作成
-            $engineerFolderPath = 'public/skillsheet/' . $engineer->id;
+            $engineerFolderPath = 'public/skillsheet/' . $engineer->id. $engineer->name;
             Storage::makeDirectory($engineerFolderPath);
     
             // ファイルを保存
@@ -117,7 +117,7 @@ class EngineerController extends Controller
     {
         return view('engineer.create');
     }
-    
+    // エンジニア登録
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -133,23 +133,4 @@ class EngineerController extends Controller
         return redirect()->route('engineer.index')->with('success', 'エンジニアが登録されました！');
     }
 
-    /*
-    public function upload(Request $request)
-    {
-        // バリデーションなどの必要な処理を追加
-
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-
-            // ファイルを保存する処理
-            $path = $file->store('storage/app/public/skillsheet');
-
-            // ファイルの保存が成功したら成功メッセージを返す
-            return back()->with('success', 'ファイルがアップロードされました。');
-        }
-
-        // ファイルがアップロードされていない場合はエラーメッセージを返す
-        return back()->with('error', 'ファイルが選択されていません。');
-    }
-    */
 }
