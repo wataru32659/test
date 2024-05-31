@@ -1,15 +1,19 @@
  **開発環境**
 - Docker
 
+**Dockerコンテナ**
+- app
+- db
+- nginx
 **Dockerイメージ**
-- laravel
 - php
 - mysql
+- nginx
 
 **開発環境構築手順**
 - Dockerをインストール
 - git cloneでリモートリポジトリをcloneする
-- dockerにdbフォルダを作成
+- dockerにdbフォルダを作成(mkdir .\docker-laravel\docker\db)
 - wsl環境(ubuntu)を開く
 - docker compose up -dでコンテナを作成・起動
 - cd docker-laravelに移動
@@ -27,7 +31,7 @@
 - mysql -u root -pでmysqlに入る
 - passwordはrootを入力※入力時に画面上に表示されないが、見えないだけで入力されています。
 - SHOW DATABASES※すべてのデータベース一覧を表示してくれます。
-- use 〇〇※データベース一覧を表示してくれます。
+- use database※databaseに切り替えます。
 
 **Dockerコマンド一覧**
 - docker ps※現在のコンテナ稼働状況確認
@@ -35,3 +39,9 @@
 - docker stop <CONTAINER IDまたはNAME>※コンテナ停止
 - docker start $(docker ps -aq)※すべてのコンテナ開始
 - docker stop $(docker ps -q)※すべてのコンテナ停止
+
+**ログの確認方法**
+- use Illuminate\Support\Facades\Log;
+-  Log::info(変数);
+下記でログの内容を確認
+-  \storage\logs\laravel.log
